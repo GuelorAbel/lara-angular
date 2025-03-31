@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Auth\LoginFormRequest;
 use App\Http\Requests\Auth\RegisterFormRequest;
+use App\Http\Resources\userResource;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -24,7 +25,7 @@ class AuthController extends Controller
             return response()->json([
                 'status' => 'success',
                 'message' => 'Votre compte a bien été créé.',
-                'user' => $user
+                'user' => new userResource($user),
             ], 201);
         }
         catch (\Exception $e) {
@@ -51,7 +52,7 @@ class AuthController extends Controller
                 return response()->json([
                     'status' => 'success',
                     'message' => 'Vous êtes connecté(e) !',
-                    'user' => $user,
+                    'user' => new userResource($user),
                     'token' => $token
                 ], 200);
         }

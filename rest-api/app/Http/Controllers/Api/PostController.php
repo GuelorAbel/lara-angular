@@ -82,12 +82,16 @@ class PostController extends Controller
         // Modification d'un post
         try {
             $validatedData = $request->validated(); // validation des données
-            if($request->has('title')) {
-                $validatedData['slug'] = Str::slug($request->title); // génération du slug
+            if($request->filled('title')) {
+                $validatedData['slug'] = Str::slug($request->title); // génération du slug à partir du nouveau titre
             }
             $post->update($validatedData); // mise à jour du post
+
+            $post->refresh(); // Rafraîchissement du modèle pour obtenir les données les plus récentes
+            
             return response()->json([
-                'message' => 'Le post a bien été modifié avec succès'
+                'message' => 'Le post a bien été modifié avec succès',
+                'post' => new PostResource($post),
             ]);
         }
         catch (\Exception $e) {

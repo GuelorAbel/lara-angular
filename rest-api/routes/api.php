@@ -3,7 +3,6 @@
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
-use Laravel\Sanctum\Sanctum;
 
 /*
     ************************ Endpoint d'authentification des utlisateurs ************************

@@ -25,7 +25,7 @@ class EditPostRequest extends FormRequest
             // sometimes permet d'envoyer uniquement les champs à modifier
             'title' => 'sometimes|string|min:3|max:255',
             'content' => 'sometimes|string',
-            'status' => 'sometimes|boolean'
+            'status' => 'nullable|boolean',
         ];
     }
 
@@ -33,12 +33,12 @@ class EditPostRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'title.string' => 'Le titre doit être une chaîne de caractères',
-            'title.min' => 'Le titre doit contenir au moins 3 caractères',
-            'title.max' => 'Le titre doit contenir au plus 255 caractères',
-            'content.required' => 'Le contenu est obligatoire',
-            'content.string' => 'Le contenu doit être une chaîne de caractères',
-            'status.boolean' => 'Le statut doit être soit 0 soit 1'
+            'title.string' => 'Le titre doit être une chaîne de caractères.',
+            'title.min' => 'Le titre doit contenir au moins 3 caractères.',
+            'title.max' => 'Le titre doit contenir au plus 255 caractères.',
+            'content.string' => 'Le contenu doit être une chaîne de caractères.',
+            'content.min' => 'Le contenu doit contenir au moins 10 caractères.',
+            'status.boolean' => 'Le statut doit être soit faux(false) soit vrai(true).'
         ];
     }
 }
